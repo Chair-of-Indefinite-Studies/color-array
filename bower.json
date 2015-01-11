@@ -1,0 +1,20 @@
+{
+  "name": "cois-color-array",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "transform a color string into an color array usable by canvas image data",
+  "main": "cois-color-array.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "SpecRunner.html",
+    "spec",
+    "package.json",
+    "gulpFile.js"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "~2.1.3"
+  }
+}
