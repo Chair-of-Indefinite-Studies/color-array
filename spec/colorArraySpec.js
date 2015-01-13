@@ -24,5 +24,17 @@ describe('color', function(){
 		});
 	    });
 	});
-    });
+
+    	describe('rgba', function(){
+	    it('should convert \'rgba\' to correct array', function(){
+		[
+		    { 'input': 'rgba(0,0,0,255)', 'expectedOutput': [0, 0, 0, 255] },
+		    { 'input': 'rgba(255,0,0,128)', 'expectedOutput': [255, 0, 0, 128] },
+		    { 'input': 'rgba(64, 64, 64, 64)', 'expectedOutput': [64, 64, 64, 64] },
+		].forEach(function(data){
+		    expect(color.array(data.input)).toEqual(data.expectedOutput);
+		});
+	    });
+	});
+});
 });

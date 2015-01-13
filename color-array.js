@@ -25,4 +25,14 @@
 	return (name || "").match(rgbRegex);
     };
     array.registerStrategy(rgb);
+
+    var rgbaRegex = /rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+    var rgba = function(name){
+	var matches = name.match(rgbaRegex).slice(1).map(to_i);
+	return [matches[0], matches[1], matches[2], matches[3]];
+    };
+    rgba.appliesTo = function(name){
+	return (name || "").match(rgbaRegex);
+    };
+    array.registerStrategy(rgba);
 })(window.color = window.color || {})
