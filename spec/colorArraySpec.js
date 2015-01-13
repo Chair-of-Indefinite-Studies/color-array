@@ -77,5 +77,16 @@ describe('color', function(){
 		});
 	    });
 	});
+
+	describe('named', function(){
+	    it('should convert names to correct array', function(){
+		[
+		    { 'input': 'black', 'expectedOutput': [0, 0, 0, 255] },
+		    { 'input': 'white', 'expectedOutput': [255, 255, 255, 255] },
+		].forEach(function(data){
+		    expect(color.array(data.input)).toEqual(data.expectedOutput);
+		});
+	    });
+	});
     });
 });
