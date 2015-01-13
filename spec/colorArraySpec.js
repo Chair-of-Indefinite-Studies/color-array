@@ -36,5 +36,17 @@ describe('color', function(){
 		});
 	    });
 	});
-});
+
+        describe('doubleHex', function(){
+	    it('should convert \'#[0-9a-zA-Z]\' to correct array', function(){
+		[
+		    { 'input': '#000000', 'expectedOutput': [0, 0, 0, 255] },
+		    { 'input': '#FFFFFF', 'expectedOutput': [255, 255, 255, 255] },
+		    { 'input': '#FFFF00', 'expectedOutput': [255, 255, 0, 255] },
+		].forEach(function(data){
+		    expect(color.array(data.input)).toEqual(data.expectedOutput);
+		});
+	    });
+	});
+    });
 });

@@ -35,4 +35,18 @@
 	return (name || "").match(rgbaRegex);
     };
     array.addStrategy(rgba);
+
+    function hex_to_i(name){
+	return Number.parseInt(name, 16);
+    }
+
+    var doubleHexRegex = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})/;
+    var doubleHex = function(name){
+	var matches = name.match(doubleHexRegex).slice(1).map(hex_to_i);
+	return [matches[0], matches[1], matches[2], 255];
+    };
+    doubleHex.appliesTo = function(name){
+	return (name || "").match(doubleHexRegex);
+    };
+    array.addStrategy(doubleHex);
 })(window.color = window.color || {})
