@@ -8,7 +8,7 @@
 	})[0];
 	return strategy(name);
     };
-    array.registerStrategy = function(strategy){
+    array.addStrategy = function(strategy){
 	strategies.push(strategy);
     }
 
@@ -24,7 +24,7 @@
     rgb.appliesTo = function(name){
 	return (name || "").match(rgbRegex);
     };
-    array.registerStrategy(rgb);
+    array.addStrategy(rgb);
 
     var rgbaRegex = /rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
     var rgba = function(name){
@@ -34,5 +34,5 @@
     rgba.appliesTo = function(name){
 	return (name || "").match(rgbaRegex);
     };
-    array.registerStrategy(rgba);
+    array.addStrategy(rgba);
 })(window.color = window.color || {})
