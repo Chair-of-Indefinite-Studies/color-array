@@ -12,6 +12,12 @@ describe('color', function(){
 	    expect(typeof color.array).toBe('function');
 	});
 
+	it('should throw exception on unknown format', function(){
+	    expect(function(){
+		color.array('unknown(1, 2, 3)')
+	    }).toThrow();;
+	});
+
 	describe('rgb', function(){
 	    it('should convert \'rgb\' to correct array', function(){
 		[
@@ -38,11 +44,34 @@ describe('color', function(){
 	});
 
         describe('doubleHex', function(){
-	    it('should convert \'#[0-9a-zA-Z]\' to correct array', function(){
+	    it('should convert \'#[0-9a-zA-Z]{6}\' to correct array', function(){
 		[
 		    { 'input': '#000000', 'expectedOutput': [0, 0, 0, 255] },
 		    { 'input': '#FFFFFF', 'expectedOutput': [255, 255, 255, 255] },
 		    { 'input': '#FFFF00', 'expectedOutput': [255, 255, 0, 255] },
+		].forEach(function(data){
+		    expect(color.array(data.input)).toEqual(data.expectedOutput);
+		});
+	    });
+	});
+
+        describe('singleHex', function(){
+	    it('should convert \'#[0-9a-zA-Z]{3}\' to correct array', function(){
+		[
+		    { 'input': '#000', 'expectedOutput': [0, 0, 0, 255] },
+		    { 'input': '#FFF', 'expectedOutput': [255, 255, 255, 255] },
+		    { 'input': '#F0F', 'expectedOutput': [255, 0, 255, 255] },
+		].forEach(function(data){
+		    expect(color.array(data.input)).toEqual(data.expectedOutput);
+		});
+	    });
+	});
+
+	describe('rgbProcent', function(){
+	    it('should convert \'rgb%\' to correct array', function(){
+		[
+		    { 'input': 'rgb(0%,0%,0%)', 'expectedOutput': [0, 0, 0, 255] },
+		    { 'input': 'rgb(100%,0%,0%)', 'expectedOutput': [255, 0, 0, 255] },
 		].forEach(function(data){
 		    expect(color.array(data.input)).toEqual(data.expectedOutput);
 		});
