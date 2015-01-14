@@ -27,10 +27,22 @@
     };
     array.addStrategy(rgb);
 
-    var rgbaRegex = /rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+    function to_f(f) {
+	return Number.parseFloat(f);
+    }
+
+    function scale(range) {
+	return function(f){
+	    return Math.ceil(f * range);
+	}
+    }
+
+    var rgbaRegex = /rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(1|0|(0?\.\d*)|1\.0*)\s*\)/;
     var rgba = function(name){
-	var matches = name.match(rgbaRegex).slice(1).map(to_i);
-	return [matches[0], matches[1], matches[2], matches[3]];
+	var match = name.match(rgbaRegex);
+	var colors = match.slice(1, 4).map(to_i);
+	var alpha = match.slice(4, 5).map(to_f).map(scale(255));
+	return [colors[0], colors[1], colors[2], alpha[0]];
     };
     rgba.appliesTo = function(name){
 	return (name || "").match(rgbaRegex);
