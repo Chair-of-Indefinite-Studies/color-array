@@ -1,6 +1,6 @@
 {
   "name": "cois-color-array",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "license": "MIT",
   "description": "transform a color string into an color array usable by canvas image data",
   "main": "cois-color-array.js",
